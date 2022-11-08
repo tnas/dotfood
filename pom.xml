@@ -15,5 +15,6 @@
 		<module>dotfood-discovery</module>
 		<module>dotfood-payments</module>
 		<module>dotfood-orders</module>
+		<module>dotfood-gateway</module>
 	</modules>
 </project>
