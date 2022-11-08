@@ -1,4 +1,4 @@
-package com.tnas.dotfood.payments.repositories;
+package com.tnas.dotfood.payments.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

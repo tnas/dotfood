@@ -9,9 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.tnas.dotfood.payments.dto.PaymentoDto;
+import com.tnas.dotfood.payments.http.OrderClient;
 import com.tnas.dotfood.payments.model.Payment;
 import com.tnas.dotfood.payments.model.Status;
-import com.tnas.dotfood.payments.repositories.PaymentRepository;
+import com.tnas.dotfood.payments.repository.PaymentRepository;
 
 @Service
 public class PaymentService {
@@ -21,6 +22,9 @@ public class PaymentService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private OrderClient orderClient;
 	
 	public Page<PaymentoDto> getAll(Pageable page) {
 		return this.repository
@@ -56,5 +60,19 @@ public class PaymentService {
 	
 	public void deletePayment(Long id) {
 		this.repository.deleteById(id);
+	}
+	
+	public void confirmPayment(Long id) {
+		
+		var payment = this.repository.findById(id);
+		
+		if (!payment.isPresent()) {
+			throw new EntityNotFoundException();
+		}
+		
+		payment.get().setStatus(Status.CONFIRMED);
+		this.repository.save(payment.get());
+		
+		this.orderClient.updatePayment(payment.get().getOrderId());
 	}
 }
