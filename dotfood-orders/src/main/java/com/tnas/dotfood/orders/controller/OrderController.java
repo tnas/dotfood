@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,11 @@ public class OrderController {
         @GetMapping("/{id}")
         public ResponseEntity<OrderDto> getById(@PathVariable @NotNull Long id) {
             return  ResponseEntity.ok(service.getById(id));
+        }
+        
+        @GetMapping("/port")
+        public String getPort(@Value("${local.server.port}") String port) {
+            return  String.format("Request fulfilled by instance listening the port %s", port);
         }
 
         @PostMapping()
