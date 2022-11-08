@@ -14,7 +14,7 @@ public class OrderDto {
     
     private Status status;
     
-    private List<OrderItemDto> itens = new ArrayList<>();
+    private List<OrderItemDto> items = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -40,12 +40,11 @@ public class OrderDto {
 		this.status = status;
 	}
 
-	public List<OrderItemDto> getItens() {
-		return itens;
+	public List<OrderItemDto> getItems() {
+		return items;
 	}
 
-	public void setItens(List<OrderItemDto> itens) {
-		this.itens = itens;
+	public void setItems(List<OrderItemDto> items) {
+		this.items = items;
 	}
-
 }

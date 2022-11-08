@@ -116,9 +116,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{api-gateway}}/ms-payments/payments/4",
+					"raw": "{{dotfood-gateway}}/ms-payments/payments/4",
 					"host": [
-						"{{api-gateway}}"
+						"{{dotfood-gateway}}"
 					],
 					"path": [
 						"ms-payments",
