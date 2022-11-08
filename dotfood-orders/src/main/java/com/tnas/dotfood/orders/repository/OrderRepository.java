@@ -13,9 +13,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update Order o set o.status = :status where o = :order")
-    void updateStatus(Status status, Order pedido);
+    void updateStatus(Status status, Order order);
 
-    @Query(value = "SELECT o from Order p LEFT JOIN FETCH o.items where o.id = :id")
+    @Query(value = "SELECT o from Order o LEFT JOIN FETCH o.items where o.id = :id")
     Order getById(Long id);
 
 }
