@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "7cbb13f8-83d8-490c-ba95-42665f54fc60",
+		"name": "Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1142447"
+	},
+	"item": [
+		{
+			"name": "Testing load balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders/port",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders",
+						"port"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving all orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sending an order with no items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sending an order with items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"items\": [\n        {\n            \"amount\": 2,\n            \"description\": \"Hamburguer\"\n        },\n        {\n            \"amount\": 1,\n            \"description\": \"Coke\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paying an order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders/1/paid",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders",
+						"1",
+						"paid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirming an order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"status\": \"CONFIRMED\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-orders/orders/1/status",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-orders",
+						"orders",
+						"1",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -128,6 +128,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Confirming an order",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-payments/payments/7/confirm",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-payments",
+						"payments",
+						"7",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving a payment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{dotfood-gateway}}/ms-payments/payments/5",
+					"host": [
+						"{{dotfood-gateway}}"
+					],
+					"path": [
+						"ms-payments",
+						"payments",
+						"5"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
