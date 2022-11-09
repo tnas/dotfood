@@ -7,7 +7,7 @@ The microservices were developed with **Spring Boot**
 - Orders
 
 ### Databases
-- Both microservices have a MySQL database.
+- Both microservices have a **MySQL** database.
 - They used **Flyway** for database migration.
 
 ### Service Registration and Discovery
