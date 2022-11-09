@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tnas.dotfood.payments.dto.PaymentoDto;
+import com.tnas.dotfood.payments.model.Status;
 import com.tnas.dotfood.payments.service.PaymentService;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @RestController
 @RequestMapping("/payments")
@@ -62,8 +65,13 @@ public class PaymentController {
 	}
 	
 	@PatchMapping("/{id}/confirm")
+	@CircuitBreaker(name = "updateOrder", fallbackMethod = "confirmPaymentWithNoIntegration")
 	public void confirmPayment(@PathVariable Long id) {
 		this.service.confirmPayment(id);
+	}
+	
+	public void confirmPaymentWithNoIntegration(Long id, Exception e) {
+		this.service.updateStatus(id, Status.CONFIRMED_WITH_NO_INTEGRATION);
 	}
 	
 }

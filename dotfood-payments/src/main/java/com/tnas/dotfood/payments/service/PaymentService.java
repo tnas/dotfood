@@ -37,7 +37,10 @@ public class PaymentService {
 		var payment = this.repository.findById(id)
 				.orElseThrow(EntityNotFoundException::new);
 		
-		return this.modelMapper.map(payment, PaymentoDto.class);
+		var dto = this.modelMapper.map(payment, PaymentoDto.class);
+		dto.setItems(this.orderClient.getOrderPayment(payment.getOrderId()).getItems());
+		
+		return dto;
 	}
 	
 	public PaymentoDto createPayment(PaymentoDto dto) {
@@ -63,6 +66,11 @@ public class PaymentService {
 	}
 	
 	public void confirmPayment(Long id) {
+		var payment = this.updateStatus(id, Status.CONFIRMED);
+		this.orderClient.updatePayment(payment.getOrderId());
+	}
+	
+	public Payment updateStatus(Long id, Status status) {
 		
 		var payment = this.repository.findById(id);
 		
@@ -70,9 +78,9 @@ public class PaymentService {
 			throw new EntityNotFoundException();
 		}
 		
-		payment.get().setStatus(Status.CONFIRMED);
+		payment.get().setStatus(status);
 		this.repository.save(payment.get());
 		
-		this.orderClient.updatePayment(payment.get().getOrderId());
+		return payment.get();
 	}
 }

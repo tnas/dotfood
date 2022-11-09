@@ -1,7 +1,9 @@
 package com.tnas.dotfood.payments.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import com.tnas.dotfood.payments.model.OrderItem;
 import com.tnas.dotfood.payments.model.Status;
 
 public class PaymentoDto {
@@ -23,6 +25,8 @@ public class PaymentoDto {
 	private Long orderId;
 	
 	private Long paymentMethodId;
+	
+	private List<OrderItem> items;
 
 	public Long getId() {
 		return id;
@@ -95,5 +99,13 @@ public class PaymentoDto {
 	public void setPaymentMethodId(Long paymentMethodId) {
 		this.paymentMethodId = paymentMethodId;
 	}
-	
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
+
 }
