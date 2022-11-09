@@ -19,5 +19,5 @@ It was used **Netflix Eureka Client**
 ### Synchronous Communication
 It was used **Open Feign**
 
-## Circuit Breaker
+### Circuit Breaker
 It was used **Resilience4j**
