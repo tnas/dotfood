@@ -67,12 +67,14 @@ elif [[ $1 == "-app" ]];then
 		docker rm -f $container
 	fi
 	
+	mvn install -f ../pom.xml
+	
 	echo "Creating Microservice Payments Application container"
 	cp ../target/$JAR_APP_PAYMENTS app/
 	cd app
 	docker build -t $IMAGE_APP_PAYMENTS .
 	docker run --name $CONTAINER_APP_PAYMENTS -d \
-		-e MYSQL_HOST=$CONTAINER_DB_PAYMENTS -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin \
+		-e MYSQL_HOST=dotfood-db-payments -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin \
 		-p 8082:8082 --network=$NET_DOTFOOD $IMAGE_APP_PAYMENTS
 else
 	echo 'Invalid parameters'
