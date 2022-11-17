@@ -49,6 +49,7 @@ if [[ $1 == "-db" ]];then
 	docker run --name dotfood-db-payments -d \
 		-e MYSQL_ROOT_PASSWORD=adminroot -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -e MYSQL_ROOT_HOST=% \
 		-v $PWD/db/sql:/docker-entrypoint-initdb.d \
+		-v $PWD/db/data:/var/lib/mysql \
 		-p 3306:3306 --network=$NET_DOTFOOD $IMAGE_DB_PAYMENTS
 
 elif [[ $1 == "-app" ]];then

@@ -25,3 +25,8 @@ hs_err_pid*
 # Eclipse files
 .settings/
 .project
+
+# Docker volumes
+/rabbitmq-data/
+
+

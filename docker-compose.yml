@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  payments_db:
+    build: ./dotfood-payments/docker/db
+    image: dotfood/db-payments:1.0
+    container_name: dotfood-db-payments
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=adminroot 
+      - MYSQL_USER=admin 
+      - MYSQL_PASSWORD=admin 
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - ./dotfood-payments/docker/db/sql:/docker-entrypoint-initdb.d
+      - ./dotfood-payments/docker/db/data:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: dotfood-rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./rabbitmq-data:/var/lib/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
