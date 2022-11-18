@@ -27,6 +27,6 @@ hs_err_pid*
 .project
 
 # Docker volumes
-/rabbitmq-data/
+rabbitmq-data/*
 
 

@@ -2,3 +2,6 @@
 
 # Eclipse files
 .classpath
+
+# Docker files
+db/data/*

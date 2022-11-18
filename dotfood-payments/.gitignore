@@ -4,4 +4,4 @@
 .classpath
 
 # Docker volumes
-/docker/db/data/
+db/data/*

@@ -1,9 +1,35 @@
 version: "3.9"
 
 services:
+  
+  payments_app:
+    build: ./dotfood-payments
+    image: dotfood/app-payments:1.0
+    container_name: dotfood-app-payments
+    ports:
+      - 8082:8082
+    environment:
+      - MYSQL_HOST=dotfood-db-payments 
+      - MYSQL_USER=admin 
+      - MYSQL_PASSWORD=admin
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+      - RABBITMQ_HOST=dotfood-rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASSWORD=admin
+    depends_on:
+      - payments_db
+      - discovery_server
+      - rabbitmq
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "dotfood-db-payments", "-uroot", "-padminroot"]
+      interval: 1m30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s 
 
   payments_db:
-    build: ./dotfood-payments/docker/db
+    build: ./dotfood-payments/db
     image: dotfood/db-payments:1.0
     container_name: dotfood-db-payments
     ports:
@@ -13,10 +39,68 @@ services:
       - MYSQL_USER=admin 
       - MYSQL_PASSWORD=admin 
       - MYSQL_ROOT_HOST=%
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
     volumes:
-      - ./dotfood-payments/docker/db/sql:/docker-entrypoint-initdb.d
-      - ./dotfood-payments/docker/db/data:/var/lib/mysql
+      - ./dotfood-payments/db/sql:/docker-entrypoint-initdb.d
+      - ./dotfood-payments/db/data:/var/lib/mysql
 
+  orders_app:
+    build: ./dotfood-orders
+    image: dotfood/app-orders:1.0
+    container_name: dotfood-app-orders
+    ports:
+      - 8083:8083
+    environment:
+      - MYSQL_HOST=dotfood-db-orders 
+      - MYSQL_USER=admin 
+      - MYSQL_PASSWORD=admin
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+    depends_on:
+      - orders_db
+      - discovery_server
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "-P", "3307", "dotfood-db-orders", "-uroot", "-padminroot"]
+      interval: 1m30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s 
+
+  orders_db:
+    build: ./dotfood-orders/db
+    image: dotfood/db-orders:1.0
+    container_name: dotfood-db-orders
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=adminroot 
+      - MYSQL_USER=admin 
+      - MYSQL_PASSWORD=admin 
+      - MYSQL_ROOT_HOST=%
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+    volumes:
+      - ./dotfood-orders/db/sql:/docker-entrypoint-initdb.d
+      - ./dotfood-orders/db/data:/var/lib/mysql
+
+  discovery_server:
+    build: ./dotfood-discovery
+    image: dotfood/discovery:1.0
+    container_name: dotfood-discovery
+    ports:
+      - 8081:8081
+    environment:
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+
+  gateway:
+    build: ./dotfood-gateway
+    image: dotfood/gateway:1.0
+    container_name: dotfood-gateway
+    ports:
+      - 8080:8080
+    environment:
+      - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+    depends_on:
+      - discovery_server
+      
   rabbitmq:
     image: rabbitmq:3.11-management
     container_name: dotfood-rabbitmq

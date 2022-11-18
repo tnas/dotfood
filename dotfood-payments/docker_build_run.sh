@@ -68,11 +68,9 @@ elif [[ $1 == "-app" ]];then
 		docker rm -f $container
 	fi
 	
-	mvn install -f ../pom.xml
+	mvn install
 	
 	echo "Creating Microservice Payments Application container"
-	cp ../target/$JAR_APP_PAYMENTS app/
-	cd app
 	docker build -t $IMAGE_APP_PAYMENTS .
 	docker run --name $CONTAINER_APP_PAYMENTS -d \
 		-e MYSQL_HOST=dotfood-db-payments -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin \
