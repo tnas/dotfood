@@ -6,7 +6,7 @@ import java.util.List;
 import com.tnas.dotfood.payments.model.OrderItem;
 import com.tnas.dotfood.payments.model.Status;
 
-public class PaymentoDto {
+public class PaymentDto {
 	
 	private Long id;
 	

@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.tnas.dotfood.payments.dto.PaymentoDto;
+import com.tnas.dotfood.payments.dto.PaymentDto;
 import com.tnas.dotfood.payments.http.OrderClient;
 import com.tnas.dotfood.payments.model.Payment;
 import com.tnas.dotfood.payments.model.Status;
@@ -26,39 +26,39 @@ public class PaymentService {
 	@Autowired
 	private OrderClient orderClient;
 	
-	public Page<PaymentoDto> getAll(Pageable page) {
+	public Page<PaymentDto> getAll(Pageable page) {
 		return this.repository
 				.findAll(page)
-				.map(p -> this.modelMapper.map(p, PaymentoDto.class));
+				.map(p -> this.modelMapper.map(p, PaymentDto.class));
 	}
 	
-	public PaymentoDto getById(Long id) {
+	public PaymentDto getById(Long id) {
 		
 		var payment = this.repository.findById(id)
 				.orElseThrow(EntityNotFoundException::new);
 		
-		var dto = this.modelMapper.map(payment, PaymentoDto.class);
+		var dto = this.modelMapper.map(payment, PaymentDto.class);
 		dto.setItems(this.orderClient.getOrderPayment(payment.getOrderId()).getItems());
 		
 		return dto;
 	}
 	
-	public PaymentoDto createPayment(PaymentoDto dto) {
+	public PaymentDto createPayment(PaymentDto dto) {
 		
 		var payment = this.modelMapper.map(dto, Payment.class);
 		payment.setStatus(Status.CREATED);
 		this.repository.save(payment);
 		
-		return this.modelMapper.map(payment, PaymentoDto.class);
+		return this.modelMapper.map(payment, PaymentDto.class);
 	}
 	
-	public PaymentoDto updatePayment(Long id, PaymentoDto dto) {
+	public PaymentDto updatePayment(Long id, PaymentDto dto) {
 		
 		var payment = this.modelMapper.map(dto, Payment.class);
 		payment.setId(id);
 		payment = this.repository.save(payment);
 		
-		return this.modelMapper.map(payment, PaymentoDto.class);
+		return this.modelMapper.map(payment, PaymentDto.class);
 	}
 	
 	public void deletePayment(Long id) {

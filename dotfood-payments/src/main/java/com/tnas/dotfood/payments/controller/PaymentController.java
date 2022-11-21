@@ -3,6 +3,7 @@ package com.tnas.dotfood.payments.controller;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.tnas.dotfood.payments.dto.PaymentoDto;
+import com.tnas.dotfood.payments.config.AMQPConfigurator;
+import com.tnas.dotfood.payments.dto.PaymentDto;
 import com.tnas.dotfood.payments.model.Status;
 import com.tnas.dotfood.payments.service.PaymentService;
 
@@ -32,34 +34,39 @@ public class PaymentController {
 	@Autowired
 	private PaymentService service;
 	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+	
 	@GetMapping
-	public Page<PaymentoDto> list(@PageableDefault(size = 10) Pageable page) {
+	public Page<PaymentDto> list(@PageableDefault(size = 10) Pageable page) {
 		return this.service.getAll(page);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PaymentoDto> detail(@PathVariable @NotNull Long id) {
+	public ResponseEntity<PaymentDto> detail(@PathVariable @NotNull Long id) {
 		return ResponseEntity.ok(this.service.getById(id));
 	}
 	
 	@PostMapping
-	public ResponseEntity<PaymentoDto> create(
-			@RequestBody @Valid PaymentoDto dto, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PaymentDto> create(
+			@RequestBody @Valid PaymentDto dto, UriComponentsBuilder uriBuilder) {
 		
 		var payment = this.service.createPayment(dto);
 		var address = uriBuilder.path("/payments/{id}").buildAndExpand(payment.getId()).toUri(); 
-				
+		
+		this.rabbitTemplate.convertAndSend(AMQPConfigurator.FANOUT_EXCHANGE, null, payment);
+		
 		return ResponseEntity.created(address).body(payment);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PaymentoDto> update(
-			@PathVariable @NotNull Long id, @RequestBody @Valid PaymentoDto dto) {
+	public ResponseEntity<PaymentDto> update(
+			@PathVariable @NotNull Long id, @RequestBody @Valid PaymentDto dto) {
 		return ResponseEntity.ok(this.service.updatePayment(id, dto));
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<PaymentoDto> delete(@PathVariable @NotNull Long id) {
+	public ResponseEntity<PaymentDto> delete(@PathVariable @NotNull Long id) {
 		this.service.deletePayment(id);
 		return ResponseEntity.noContent().build();
 	}

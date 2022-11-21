@@ -55,9 +55,14 @@ services:
       - MYSQL_USER=admin 
       - MYSQL_PASSWORD=admin
       - EUREKA_DISCOVERY_SERVER=dotfood-discovery
+      - RABBITMQ_HOST=dotfood-rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASSWORD=admin
     depends_on:
       - orders_db
       - discovery_server
+      - rabbitmq
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "-P", "3307", "dotfood-db-orders", "-uroot", "-padminroot"]
       interval: 1m30s
