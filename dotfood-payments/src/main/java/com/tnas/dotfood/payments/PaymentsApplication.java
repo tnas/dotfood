@@ -10,6 +10,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class PaymentsApplication {
 
+	/**
+	 * Test Profile: -Dspring.profiles.active=test 
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(PaymentsApplication.class, args);
 	}

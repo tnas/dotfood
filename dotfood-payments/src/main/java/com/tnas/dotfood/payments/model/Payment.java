@@ -24,7 +24,7 @@ public class Payment {
 	
 	@NotNull
 	@Positive
-	private BigDecimal value;
+	private BigDecimal total;
 	
 	@NotBlank
 	@Size(max = 100)
@@ -60,12 +60,12 @@ public class Payment {
 		this.id = id;
 	}
 
-	public BigDecimal getValue() {
-		return value;
+	public BigDecimal getTotal() {
+		return total;
 	}
 
-	public void setValue(BigDecimal value) {
-		this.value = value;
+	public void setTotal(BigDecimal value) {
+		this.total = value;
 	}
 
 	public String getName() {
