@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CreateOrderComponent } from './components/orders/create-order/create-order.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListOrderComponent } from './components/orders/list-order/list-order.component';
 import { OrderComponent } from './components/orders/order/order.component';
 import { DeleteOrderComponent } from './components/orders/delete-order/delete-order.component';
@@ -30,7 +30,8 @@ import { EditOrderComponent } from './components/orders/edit-order/edit-order.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
