@@ -1,4 +1,6 @@
 /target/
 
+.factorypath
+
 # Eclipse files
 .classpath
