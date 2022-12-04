@@ -41,6 +41,16 @@ export class CreateOrderComponent {
     }
   }
 
+  enableButton(): string {
+
+    if (this.orderForm.valid) {
+      return 'botao';
+    }
+    else {
+      return 'botao__desabilitado';
+    }
+  }
+
   cancelar() {
     this.router.navigate(['listOrder']);
   }
