@@ -13,6 +13,7 @@ import { ListOrderComponent } from './components/orders/list-order/list-order.co
 import { OrderComponent } from './components/orders/order/order.component';
 import { DeleteOrderComponent } from './components/orders/delete-order/delete-order.component';
 import { EditOrderComponent } from './components/orders/edit-order/edit-order.component';
+import { LoadMoreButtonComponent } from './components/orders/list-order/load-more-button/load-more-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditOrderComponent } from './components/orders/edit-order/edit-order.co
     ListOrderComponent,
     OrderComponent,
     DeleteOrderComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    LoadMoreButtonComponent
   ],
   imports: [
     BrowserModule,

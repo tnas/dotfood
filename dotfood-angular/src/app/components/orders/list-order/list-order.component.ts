@@ -10,12 +10,25 @@ import { Order } from '../order/order';
 export class ListOrderComponent {
 
   ordersList: Order[] = [];
+  currentPage: number = 1;
+  moreOrders:boolean = true;
 
   constructor(private service: OrderService) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe((list) => {
+    this.service.list(this.currentPage).subscribe((list) => {
       this.ordersList = list;
     });
+  }
+
+  loadMoreOrders() {
+    this.service.list(this.currentPage++)
+      .subscribe(list => {
+        this.ordersList.push(...list);
+        if (!list.length) {
+          this.moreOrders = false;
+        }
+      });
+
   }
 }

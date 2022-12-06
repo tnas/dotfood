@@ -1,0 +1,6 @@
+<div class="center" *ngIf="hasMoreOrders; else noMoreOrders">
+  <button class="botao carregar-mais">Load More</button>
+</div>
+<ng-template #noMoreOrders>
+  <p class="mensagem-center ff-inter">No more orders to show</p>
+</ng-template>

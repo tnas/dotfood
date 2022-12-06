@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Order } from './order/order';
 import { Observable } from 'rxjs';
 
@@ -12,8 +12,15 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.API);
+  list(page: number): Observable<Order[]> {
+
+    const itemsPerPage = 6;
+
+    let params = new HttpParams()
+      .set('_page', page)
+      .set('_limit', itemsPerPage);
+
+    return this.http.get<Order[]>(this.API, { params });
   }
 
   create(order: Order): Observable<Order> {
