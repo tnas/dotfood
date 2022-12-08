@@ -12,13 +12,17 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  list(page: number): Observable<Order[]> {
+  list(page: number, filter: string): Observable<Order[]> {
 
     const itemsPerPage = 6;
 
     let params = new HttpParams()
       .set('_page', page)
       .set('_limit', itemsPerPage);
+
+    if (filter.trim().length > 3) {
+      params = params.set('q', filter);
+    }
 
     return this.http.get<Order[]>(this.API, { params });
   }

@@ -1,20 +1,30 @@
 <section class="container">
   <header class="header d-flex">
-      <h2 class="ff-inter">Meu Mural</h2>
-      <button routerLink="/createOrder" class="botao">Adicionar pensamento</button>
+    <div class="buscar-pensamentos">
+      <input
+        type="search"
+        class="filtro"
+        placeholder="O que você procura?"
+        autofocus
+        [(ngModel)]="filtro"
+        (keyup)="searchOrder()"
+      />
+    </div>
+    <h2 class="ff-inter">Meu Mural</h2>
+    <button routerLink="/createOrder" class="botao">
+      Adicionar pensamento
+    </button>
   </header>
-  <div class="mural" *ngIf="ordersList.length > 0, else semPensamentos">
+  <div class="mural" *ngIf="ordersList.length > 0; else semPensamentos">
     <div *ngFor="let ord of ordersList">
       <app-order [pensamento]="ord"></app-order>
     </div>
   </div>
 </section>
-<app-load-more-button
-  [hasMoreOrders]="moreOrders"
-  (click) = "loadMoreOrders()">
+<app-load-more-button [hasMoreOrders]="moreOrders" (click)="loadMoreOrders()">
 </app-load-more-button>
 <ng-template #semPensamentos>
   <div class="ff-inter sem-pensamentos">
-      <p>Ainda não há pensamentos cadastrados!</p>
+    <p>Ainda não há pensamentos cadastrados!</p>
   </div>
 </ng-template>
