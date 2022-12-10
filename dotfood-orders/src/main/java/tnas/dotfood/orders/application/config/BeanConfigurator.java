@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.application.dto.config;
+package tnas.dotfood.orders.application.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

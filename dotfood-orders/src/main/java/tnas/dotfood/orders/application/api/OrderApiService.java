@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.application.dto.api;
+package tnas.dotfood.orders.application.api;
 
 import java.util.List;
 
