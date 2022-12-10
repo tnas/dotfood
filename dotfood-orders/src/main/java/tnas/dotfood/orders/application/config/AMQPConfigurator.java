@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.config;
+package tnas.dotfood.orders.application.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

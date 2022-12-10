@@ -1,10 +1,10 @@
-package com.tnas.dotfood.orders.dto;
+package tnas.dotfood.orders.application;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tnas.dotfood.orders.model.Status;
+import tnas.dotfood.orders.domain.Status;
 
 public class OrderDto {
 

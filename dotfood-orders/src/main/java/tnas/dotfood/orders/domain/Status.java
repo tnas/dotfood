@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.model;
+package tnas.dotfood.orders.domain;
 
 public enum Status {
     SENT,

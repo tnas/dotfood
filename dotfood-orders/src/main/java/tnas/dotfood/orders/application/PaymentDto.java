@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.dto;
+package tnas.dotfood.orders.application;
 
 import java.math.BigDecimal;
 

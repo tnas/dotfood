@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.model;
+package tnas.dotfood.orders.infrastructure;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,9 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import tnas.dotfood.orders.domain.Status;
+
 @Entity
 @Table(name = "orders")
-public class Order {
+public class OrderEntity {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +31,7 @@ public class Order {
     private Status status;
 
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
-    private List<OrderItem> items = new ArrayList<>();
+    private List<OrderItemEntity> items = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -55,11 +57,11 @@ public class Order {
 		this.status = status;
 	}
 
-	public List<OrderItem> getItems() {
+	public List<OrderItemEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<OrderItem> items) {
+	public void setItems(List<OrderItemEntity> items) {
 		this.items = items;
 	}
 }

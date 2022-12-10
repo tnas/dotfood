@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.controller;
+package tnas.dotfood.orders.application.api;
 
 import java.util.List;
 
@@ -17,20 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.tnas.dotfood.orders.dto.OrderDto;
-import com.tnas.dotfood.orders.dto.StatusDto;
-import com.tnas.dotfood.orders.service.OrderService;
+import tnas.dotfood.orders.application.OrderDto;
+import tnas.dotfood.orders.application.StatusDto;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
         @Autowired
-        private OrderService service;
+        private OrderApiService service;
 
         @GetMapping()
-        public List<OrderDto> getAll() {
-            return service.getAll();
+        public ResponseEntity<List<OrderDto>> getAll() {
+            return ResponseEntity.ok(service.getAll());
         }
 
         @GetMapping("/{id}")

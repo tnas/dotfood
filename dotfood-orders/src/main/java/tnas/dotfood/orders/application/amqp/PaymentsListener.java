@@ -1,11 +1,11 @@
-package com.tnas.dotfood.orders.amqp;
+package tnas.dotfood.orders.application.amqp;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.tnas.dotfood.orders.config.AMQPConfigurator;
-import com.tnas.dotfood.orders.dto.PaymentDto;
+import tnas.dotfood.orders.application.PaymentDto;
+import tnas.dotfood.orders.application.config.AMQPConfigurator;
 
 @Component
 public class PaymentsListener {

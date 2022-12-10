@@ -1,4 +1,4 @@
-package com.tnas.dotfood.orders.model;
+package tnas.dotfood.orders.infrastructure;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "order_items")
-public class OrderItem {
+public class OrderItemEntity {
 	
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class OrderItem {
     private String description;
 
     @ManyToOne(optional=false)
-    private Order order;
+    private OrderEntity order;
 
 	public Long getId() {
 		return id;
@@ -50,11 +50,11 @@ public class OrderItem {
 		this.description = description;
 	}
 
-	public Order getOrder() {
+	public OrderEntity getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(OrderEntity order) {
 		this.order = order;
 	}
 }
