@@ -1,6 +1,6 @@
-package tnas.dotfood.orders.application;
+package tnas.dotfood.orders.application.dto;
 
-import tnas.dotfood.orders.domain.Status;
+import tnas.dotfood.orders.domain.model.Status;
 
 public class StatusDto {
 	

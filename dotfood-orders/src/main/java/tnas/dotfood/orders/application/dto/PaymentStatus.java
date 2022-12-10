@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.application;
+package tnas.dotfood.orders.application.dto;
 
 public enum PaymentStatus {
 	CREATED,

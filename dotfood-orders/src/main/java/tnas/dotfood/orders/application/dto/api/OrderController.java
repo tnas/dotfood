@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.application.api;
+package tnas.dotfood.orders.application.dto.api;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import tnas.dotfood.orders.application.OrderDto;
-import tnas.dotfood.orders.application.StatusDto;
+import tnas.dotfood.orders.application.dto.OrderDto;
+import tnas.dotfood.orders.application.dto.StatusDto;
 
 @RestController
 @RequestMapping("/orders")

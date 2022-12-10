@@ -8,10 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import tnas.dotfood.orders.domain.Order;
-import tnas.dotfood.orders.domain.Status;
+import tnas.dotfood.orders.domain.model.Order;
+import tnas.dotfood.orders.domain.model.Status;
 import tnas.dotfood.orders.domain.repository.OrderRepository;
-import tnas.dotfood.orders.infrastructure.OrderEntity;
+import tnas.dotfood.orders.infrastructure.entity.OrderEntity;
 import tnas.dotfood.orders.infrastructure.repository.MySqlOrderRepository;
 
 @Repository

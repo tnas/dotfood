@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.domain;
+package tnas.dotfood.orders.domain.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

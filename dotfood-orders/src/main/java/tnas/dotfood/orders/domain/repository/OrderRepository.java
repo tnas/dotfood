@@ -3,8 +3,8 @@ package tnas.dotfood.orders.domain.repository;
 import java.util.List;
 import java.util.Optional;
 
-import tnas.dotfood.orders.domain.Order;
-import tnas.dotfood.orders.domain.Status;
+import tnas.dotfood.orders.domain.model.Order;
+import tnas.dotfood.orders.domain.model.Status;
 
 public interface OrderRepository  {
 	

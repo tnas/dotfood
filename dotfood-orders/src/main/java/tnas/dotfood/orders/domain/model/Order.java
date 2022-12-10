@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.domain;
+package tnas.dotfood.orders.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.infrastructure;
+package tnas.dotfood.orders.infrastructure.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

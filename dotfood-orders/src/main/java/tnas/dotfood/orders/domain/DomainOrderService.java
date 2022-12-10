@@ -7,6 +7,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tnas.dotfood.orders.domain.model.Order;
+import tnas.dotfood.orders.domain.model.Status;
 import tnas.dotfood.orders.domain.repository.OrderRepository;
 import tnas.dotfood.orders.domain.service.OrderService;
 

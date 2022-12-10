@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.infrastructure;
+package tnas.dotfood.orders.infrastructure.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import tnas.dotfood.orders.domain.Status;
+import tnas.dotfood.orders.domain.model.Status;
 
 @Entity
 @Table(name = "orders")

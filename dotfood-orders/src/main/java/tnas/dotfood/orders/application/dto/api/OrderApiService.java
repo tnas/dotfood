@@ -1,4 +1,4 @@
-package tnas.dotfood.orders.application.api;
+package tnas.dotfood.orders.application.dto.api;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tnas.dotfood.orders.application.OrderDto;
-import tnas.dotfood.orders.application.StatusDto;
-import tnas.dotfood.orders.domain.Order;
-import tnas.dotfood.orders.domain.Status;
+import tnas.dotfood.orders.application.dto.OrderDto;
+import tnas.dotfood.orders.application.dto.StatusDto;
+import tnas.dotfood.orders.domain.model.Order;
+import tnas.dotfood.orders.domain.model.Status;
 import tnas.dotfood.orders.domain.service.OrderService;
 
 @Service
