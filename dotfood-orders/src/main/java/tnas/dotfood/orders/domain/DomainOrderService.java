@@ -44,7 +44,7 @@ public class DomainOrderService implements OrderService {
         }
 
         var order = optOrder.get();
-        order.setStatus(status);
+        order.changeStatus(status);
         this.repository.save(order);
         
         return order;
@@ -60,7 +60,7 @@ public class DomainOrderService implements OrderService {
         }
         
         var order = optOrder.get();
-        order.setStatus(Status.PAID);
+        order.markPaymentApproved();
         
         this.repository.save(order);
     }

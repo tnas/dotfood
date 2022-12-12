@@ -9,6 +9,12 @@ public class BeanConfigurator {
 
     @Bean
     public ModelMapper getModelMapper() {
-        return new ModelMapper();
+    	
+    	var mapper = new ModelMapper();
+    	
+        mapper.getConfiguration()
+        	.setFieldMatchingEnabled(Boolean.TRUE);
+        	
+        return mapper;
     }
 }
