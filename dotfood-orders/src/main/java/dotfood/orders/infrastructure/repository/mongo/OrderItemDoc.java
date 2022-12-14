@@ -1,8 +1,5 @@
 package dotfood.orders.infrastructure.repository.mongo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -15,13 +12,16 @@ import lombok.Setter;
 @Document("order_items")
 public class OrderItemDoc {
 	
-	@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-
+//	@Id
+//	private BigInteger id;
+	
     @NotNull
     @Positive
     private Integer amount;
 
     private String description;
+    
+//    public OrderItemDoc() {
+//    	this.id = new BigInteger(ObjectId.get().toString());
+//    }
 }

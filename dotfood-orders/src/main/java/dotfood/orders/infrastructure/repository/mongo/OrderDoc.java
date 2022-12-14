@@ -1,5 +1,6 @@
 package dotfood.orders.infrastructure.repository.mongo;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import lombok.Setter;
 public class OrderDoc {
 	
 	@Id
-	private Long id;
+	private BigInteger id;
 
     @NotNull
     private LocalDateTime dateTime;
