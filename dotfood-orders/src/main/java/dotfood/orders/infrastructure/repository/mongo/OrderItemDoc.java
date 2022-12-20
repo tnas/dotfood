@@ -12,16 +12,9 @@ import lombok.Setter;
 @Document("order_items")
 public class OrderItemDoc {
 	
-//	@Id
-//	private BigInteger id;
-	
     @NotNull
     @Positive
     private Integer amount;
 
     private String description;
-    
-//    public OrderItemDoc() {
-//    	this.id = new BigInteger(ObjectId.get().toString());
-//    }
 }

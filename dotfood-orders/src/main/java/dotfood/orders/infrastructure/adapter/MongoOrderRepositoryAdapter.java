@@ -26,14 +26,12 @@ public class MongoOrderRepositoryAdapter implements OrderRepository {
 	
 	@Override
 	public Optional<Order> getFatById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return this.docToModel(this.repository.findById(id));
 	}
 
 	@Override
 	public Optional<Order> findById(Long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return this.getFatById(id);
 	}
 
 	@Override
@@ -45,14 +43,20 @@ public class MongoOrderRepositoryAdapter implements OrderRepository {
 
 	@Override
 	public void updateStatus(Status status, Order order) {
-		// TODO Auto-generated method stub
-		
+		var doc = this.modelMapper.map(order, OrderDoc.class);
+		doc.setStatus(status);
+		this.repository.save(this.modelMapper.map(order, OrderDoc.class));
 	}
 
 	@Override
 	public Order save(Order order) {
 		var savedEntity = this.repository.save(this.modelMapper.map(order, OrderDoc.class)); 
 		return this.modelMapper.map(savedEntity, Order.class);
+	}
+	
+	private Optional<Order> docToModel(Optional<OrderDoc> doc) {
+		return doc.isPresent() ? Optional.of(this.modelMapper.map(doc.get(), Order.class))
+				: Optional.empty();	
 	}
 
 }
